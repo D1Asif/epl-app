@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import './TeamBrief.css';
-import maleImage from '../../photos/male.png';
-import femaleImage from '../../photos/female.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faMars, faFlag, faFutbol, faUsers } from '@fortawesome/free-solid-svg-icons';
@@ -23,8 +21,6 @@ const TeamBrief = () => {
 
     console.log(team);
     const { strTeam, strTeamBadge, strKeywords, strDescriptionEN, intFormedYear, strStadium, strGender, strDescriptionES, strFacebook, strTwitter, strYoutube, strTeamFanart1  } = team;
-
-    let maleFemaleImage = (strGender === 'Male') ? maleImage : femaleImage;
 
     return (
         <div className="dark-background text-white">
