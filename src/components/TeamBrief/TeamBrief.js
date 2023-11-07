@@ -13,13 +13,16 @@ const TeamBrief = () => {
     const [team, setTeam] = useState({ teams: [{}] });
 
     useEffect(() => {
-        fetch(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=${teamId}`)
+        fetch(`https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=English%20Premier%20League`)
             .then(res => res.json())
-            .then(data => setTeam(data))
+            .then(data => {
+                const {teams} = data;
+                teams.forEach((team) => team.idTeam === teamId && setTeam(team));
+            })
     }, [teamId])
 
-    console.log(team.teams[0]);
-    const { strTeam, strTeamBadge, strKeywords, strDescriptionEN, intFormedYear, strStadium, strGender, strDescriptionES, strFacebook, strTwitter, strYoutube  } = team.teams[0];
+    console.log(team);
+    const { strTeam, strTeamBadge, strKeywords, strDescriptionEN, intFormedYear, strStadium, strGender, strDescriptionES, strFacebook, strTwitter, strYoutube, strTeamFanart1  } = team;
 
     let maleFemaleImage = (strGender === 'Male') ? maleImage : femaleImage;
 
@@ -39,7 +42,7 @@ const TeamBrief = () => {
                     <h5> <FontAwesomeIcon icon={faMars} /> Gender: {strGender}</h5>
                 </div>
                 <div className="col-md-5 p-2">
-                    <img className="team-image" src={maleFemaleImage} alt="" />
+                    <img className="team-image" src={strTeamFanart1} alt="" />
                 </div>
             </div>
 
